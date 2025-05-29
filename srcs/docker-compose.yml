@@ -1,0 +1,57 @@
+networks:
+  my_network:
+
+services:
+  mariadb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - my_network
+    env_file:
+      - .env
+    restart: on-failure
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wp-data:/var/www/wordpress
+    restart: on-failure
+    networks:
+      - my_network
+    env_file:
+      - .env
+    
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    depends_on:
+      - wordpress
+    ports:
+      - 443:443
+    volumes:
+      - wp-data:/var/www/wordpress
+    restart: on-failure
+    networks:
+      - my_network
+    env_file:
+      - .env
+      
+
+volumes:
+  wp-data:
+    name: wp-data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iez-zagh/data/wp-data
+
+  db-data:
+    name: db-data
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/iez-zagh/data/db-data

@@ -20,5 +20,5 @@ wp core install --url=$URL --title=$TITLE --admin_user=$ADMIN_NAME --admin_passw
 
 wp user create $USER2_NAME $USER2_EMAIL --user_pass=$USER2_PASSWORD --role=author --allow-root
 
-exec php-fpm7.4 -F #making this cmd the primary one  (pid 1)
+exec php-fpm7.4 -F # making this cmd the primary one  (pid 1)
 

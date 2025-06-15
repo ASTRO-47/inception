@@ -1,9 +1,10 @@
 #!/bin/bash
 
 service mariadb start
-until mysqladmin ping --silent; do
-    sleep 1
-done
+
+# until mysqladmin ping --silent; do
+    sleep 4
+# done
 
 mysqladmin -u root password $DB_PASSWORD
 

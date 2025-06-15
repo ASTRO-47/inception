@@ -21,6 +21,7 @@ up: prepare
 down:
 	$(COMPOSE) down
 
+
 # Add this new target
 fclean: clean
 	docker builder prune -af  # Clears build cache
@@ -28,5 +29,5 @@ fclean: clean
 
 # Modify clean to be more thorough
 clean:
-	$(COMPOSE) down --remove-orphans -v --rmi all
+	sudo $(COMPOSE) down -v --rmi all
 	rm -rf $(WP_DIR) $(DB_DIR)

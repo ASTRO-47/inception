@@ -2,7 +2,7 @@ FROM debian:bullseye
 
 RUN apt update -y
 RUN apt upgrade -y
-RUN apt install -y php-fpm php-mysqli curl mariadb-client 
+RUN apt install -y php-fpm php-mysqli curl mariadb-client
 
 RUN echo "listen=0.0.0.0:9000" >> /etc/php/7.4/fpm/php-fpm.conf
 

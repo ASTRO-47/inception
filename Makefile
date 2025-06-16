@@ -21,6 +21,7 @@ up: prepare
 down:
 	$(COMPOSE) down
 
+re : down up
 
 # Add this new target
 fclean: clean

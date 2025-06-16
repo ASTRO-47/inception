@@ -1,17 +1,13 @@
 FROM debian:bullseye
 
-RUN apt update -y
+RUN apt update && apt install -y nginx openssl
 
-RUN apt install curl -y
+COPY tools/conf/nginx.conf /etc/nginx/sites-enabled/default
 
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-    
-RUN apt install nodejs -y
+RUN mkdir -p /etc/nginx/ssl
 
-COPY ./tools /home/app
+COPY tools/public /var/www/static
 
-WORKDIR /home/app
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=MA/ST=BeniMellal/L=Khouribga/O=42/OU=42/CN=iez-zagh.42.fr"
 
-RUN npm init -y && npm install express -y
-
-CMD ["node", "index.js"]
+CMD ["nginx", "-g", "daemon off;"]

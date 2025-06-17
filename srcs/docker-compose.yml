@@ -1,3 +1,4 @@
+# version : "3"
 networks:
   my_network:
 
@@ -39,7 +40,14 @@ services:
       - my_network
     env_file:
       - .env
-      
+  
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    # expose:
+    #   - "6379"
+    # env ??
 
 volumes:
   wp-data:

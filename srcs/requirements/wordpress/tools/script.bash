@@ -14,11 +14,10 @@ wp core download --allow-root
 
 wp config create --dbname=$DB_NAME --dbuser=root --dbpass=$DB_PASSWORD --dbhost=$DB_HOST --allow-root #Generates and reads the wp-config.php file.
 
-wp db create --allow-root #Create the WordPress database.
+wp db create --allow-root # Create the WordPress database.
 
 wp core install --url=$URL --title=$TITLE --admin_user=$ADMIN_NAME --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root
 
 wp user create $USER2_NAME $USER2_EMAIL --user_pass=$USER2_PASSWORD --role=author --allow-root
 
 exec php-fpm7.4 -F # making this cmd the primary one  (pid 1)
-

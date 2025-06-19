@@ -13,7 +13,7 @@ build: prepare
 	$(COMPOSE) build
 
 upb: prepare
-	$(COMPOSE) up --build -d
+	$(COMPOSE) up --build
 
 up: prepare
 	$(COMPOSE) up 

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# need set -e in case of already existing users or dbs ??
+
 until mysqladmin ping -h mariadb -u root -p"$DB_PASSWORD" --silent; do
     echo "Waiting for MariaDB..."
     sleep 2
@@ -20,4 +23,12 @@ wp core install --url=$URL --title=$TITLE --admin_user=$ADMIN_NAME --admin_passw
 
 wp user create $USER2_NAME $USER2_EMAIL --user_pass=$USER2_PASSWORD --role=author --allow-root
 
-exec php-fpm7.4 -F # making this cmd the primary one  (pid 1)
+wp plugin install redis-cache --activate --allow-root
+
+wp config set WP_REDIS_HOST redis --raw --allow-root
+
+wp config set WP_REDIS_PASSWORD $REDIS_PASS --raw --allow-root
+
+wp redis enable --allow-root
+
+exec php-fpm7.4 -F #  become pid 1

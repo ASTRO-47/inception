@@ -12,4 +12,4 @@ mysql -e "rename user 'root'@'localhost' to 'root'@'%'" || true
 
 mariadb-admin -u root shutdown
 
-mariadbd-safe --port="3306" --bind="0.0.0.0" --datadir="/var/lib/mysql"
+mariadbd-safe --port="3306" --bind="0.0.0.0" --datadir="/var/lib/mysql" 

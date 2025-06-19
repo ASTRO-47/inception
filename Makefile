@@ -16,8 +16,7 @@ upb: prepare
 	$(COMPOSE) up --build -d
 
 up: prepare
-	$(COMPOSE) up -d
-
+	$(COMPOSE) up 
 down:
 	$(COMPOSE) down
 
@@ -30,5 +29,5 @@ fclean: clean
 
 # Modify clean to be more thorough
 clean:
-	sudo $(COMPOSE) down -v --rmi all
+	sudo $(COMPOSE) down  -v --rmi all
 	rm -rf $(WP_DIR) $(DB_DIR)

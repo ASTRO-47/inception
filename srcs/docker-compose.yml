@@ -6,6 +6,7 @@ services:
   mariadb:
     build: requirements/mariadb/.
     container_name: mariadb
+    image: mariadb:1.0
     volumes:
       - db-data:/var/lib/mysql
     networks:
@@ -13,11 +14,14 @@ services:
     env_file:
       - .env
     restart: on-failure
+
   wordpress:
     build: requirements/wordpress/.
+    image: wordpress:1.0
     container_name: wordpress
     depends_on:
       - mariadb
+      - redis ## ??
     volumes:
       - wp-data:/var/www/wordpress
     restart: on-failure
@@ -29,6 +33,7 @@ services:
   nginx:
     build: requirements/nginx/.
     container_name: nginx
+    image: nginx:1.0
     depends_on:
       - wordpress
     ports:
@@ -42,12 +47,36 @@ services:
       - .env
   
   redis:
-    image: redis:alpine
+    image: redis:1.0
+    build: requirements/bonus/redis/.
     container_name: redis
-    restart: always
-    # expose:
-    #   - "6379"
-    # env ??
+    restart: on-failure
+    networks:
+      - my_network
+    env_file:
+      - .env
+
+  static_website:
+    image: static_website:1.0
+    build: requirements/bonus/static_website/.
+    ports:
+      - 8080:8080
+    container_name: static_website
+    restart: on-failure
+
+  redis_commander:
+    image: redis_commander:1.0
+    build: requirements/bonus/service/.
+    ports:
+      - 8081:8081
+    container_name: redis_commander
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    networks:
+      - my_network
+    restart: on-failure
 
 volumes:
   wp-data:

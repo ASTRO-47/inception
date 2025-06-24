@@ -10,5 +10,3 @@ RUN apt-get install -y php-mysqli && \
 WORKDIR /var/www/html
 
 CMD ["php", "-S", "0.0.0.0:8082"]
-
-#-S flag

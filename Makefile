@@ -22,12 +22,10 @@ down:
 
 re : down up
 
-# Add this new target
 fclean: clean
 	docker builder prune -af  # Clears build cache
 	docker image prune -af    # Clears dangling images
 
-# Modify clean to be more thorough
 clean:
-	sudo $(COMPOSE) down  -v --rmi all
+	sudo $(COMPOSE) down -v --rmi all
 	rm -rf $(WP_DIR) $(DB_DIR)

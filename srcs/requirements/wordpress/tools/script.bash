@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Exit on error, but handle specific cases gracefully
+# exit on error, but handle specific cases gracefully
 set -e
 
 echo "Starting WordPress setup..."
@@ -97,5 +97,6 @@ fi
 echo "WordPress setup completed successfully!"
 
 # Start PHP-FPM
+
 echo "Starting PHP-FPM..."
 exec php-fpm7.4 -F

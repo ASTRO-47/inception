@@ -16,7 +16,7 @@ upb: prepare
 	$(COMPOSE) up --build
 
 up: prepare
-	$(COMPOSE) up 
+	$(COMPOSE) up
 down:
 	$(COMPOSE) down
 

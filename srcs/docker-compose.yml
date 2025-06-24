@@ -29,7 +29,7 @@ services:
       - my_network
     env_file:
       - .env
-    
+ 
   nginx:
     build: requirements/nginx/.
     container_name: nginx
@@ -45,7 +45,7 @@ services:
       - my_network
     env_file:
       - .env
-  
+
   redis:
     image: redis:1.0
     build: requirements/bonus/redis/.
@@ -96,11 +96,11 @@ services:
     container_name: ftp
     ports:
       - "21:21"
-      - "21000-21010:21000-21010"
+      - "64000-64100:64000-64100"
     volumes:
       - wp-data:/var/www/wordpress
     restart:  on-failure
-    env_file:
+    env_file :
       - .env
 
 volumes:

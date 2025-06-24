@@ -2,10 +2,9 @@ FROM debian:bullseye
 
 RUN apt-get update 
 
-RUN apt-get install -y vsftpd && \
-    apt-get clean
+RUN apt-get install -y vsftpd
     
-COPY tools/ftp.conf /
+COPY tools/ftp.conf /etc/vsftpd.conf
 
 COPY tools/script.sh /
 

@@ -96,7 +96,7 @@ services:
     container_name: ftp
     ports:
       - "21:21"
-      - "64000-64100:64000-64100"
+      - "64000-64010:64000-64010"
     volumes:
       - wp-data:/var/www/wordpress
     restart:  on-failure

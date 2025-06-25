@@ -23,8 +23,8 @@ down:
 re : down up
 
 fclean: clean
-	docker builder prune -af  # Clears build cache
-	docker image prune -af    # Clears dangling images
+	docker builder prune -af
+	docker image prune -af
 
 clean:
 	sudo $(COMPOSE) down -v --rmi all

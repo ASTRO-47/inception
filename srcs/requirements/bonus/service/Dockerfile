@@ -10,7 +10,6 @@ RUN apt-get update && \
 COPY tools/script.sh /
 
 RUN chmod +x script.sh
-# EXPOSE 8081
 
 # CMD ["redis-commander", "--redis-host", "redis", "--port", "8081"]
 CMD ["./script.sh"]
